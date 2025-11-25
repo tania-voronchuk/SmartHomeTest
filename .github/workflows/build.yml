@@ -9,25 +9,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Завантажуємо ваш код на віртуальну машину
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Встановлюємо інструменти для Arduino
       - name: Setup Arduino CLI
         uses: arduino/setup-arduino-cli@v1
-
-      # 3. Встановлюємо ядро для плати Arduino Uno
+        
       - name: Install Arduino AVR Core
         run: arduino-cli core install arduino:avr
 
-      # 4. Компілюємо код (шукаємо всі .ino файли)
       - name: Compile Sketch
         run: |
           mkdir build
           arduino-cli compile --fqbn arduino:avr:uno ./ --output-dir ./build
 
-      # 5. Зберігаємо результат (файл .hex) як артефакт (+10 балів)
       - name: Upload Hex file
         uses: actions/upload-artifact@v4
         with:
