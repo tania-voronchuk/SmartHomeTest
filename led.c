@@ -22,6 +22,6 @@ void loop(){
    digitalWrite(ledPins[i], LOW);
    }
    digitalWrite(ledPins[counter], HIGH);
-   delay(250);
+   delay(260);
  }
 }
