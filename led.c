@@ -1,6 +1,6 @@
 const int buttonPin = 7; 
 
-const int ledPins[] = {9, 10, 11};
+const int ledPins[] = {10, 11, 12};
 int counter = 0;
 int buttonState = 0;
 
