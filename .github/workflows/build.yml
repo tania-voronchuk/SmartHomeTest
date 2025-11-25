@@ -18,11 +18,14 @@ jobs:
       - name: Install Arduino AVR Core
         run: arduino-cli core install arduino:avr
 
-      - name: Compile Sketch
+      - name: Compile All Sketches
         run: |
-          mkdir build
-          arduino-cli compile --fqbn arduino:avr:uno ./ --output-dir ./build
-
+          mkdir -p build
+          find ./examples -name "*.ino" | while read sketch; do
+            echo "Compiling $sketch..."
+            arduino-cli compile --fqbn arduino:avr:uno "$sketch" --output-dir ./build --clean
+          done
+          
       - name: Upload Hex file
         uses: actions/upload-artifact@v4
         with:
